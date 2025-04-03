@@ -12,11 +12,15 @@ describe('PostsService', () => {
     postsService.create({ text: 'Some pre-existing post' });
   });
 
-  it('should add a new post', () => {
-    // реализуйте тест-кейс
+  it('should find a post', () => {
+    expect(postsService.find('1')).toMatchObject({id: '1', text: 'Some pre-existing post'});
   });
 
-  it('should find a post', () => {
-    // реализуйте тест-кейс
+  it('should add a new post', () => {
+    expect(postsService.find('2')).toBeUndefined();
+
+    postsService.create(post);
+
+    expect(postsService.find('2')).toMatchObject({id: '2', text: 'Mocked post'});
   });
 });
